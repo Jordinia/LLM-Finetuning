@@ -4,29 +4,29 @@ load_in_4bit: True
 max_seq_length: 30000
 
 # LoRA Configuration
-lora_r: 32
-lora_alpha: 32
-lora_dropout: 0
+lora_r: 64
+lora_alpha: 256
+lora_dropout: 0.1
 target_modules: ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"]
 bias: "none"
 use_gradient_checkpointing: "unsloth"
 
 # Training Configuration
 output_dir: "outputs"
-per_device_train_batch_size: 2
+per_device_train_batch_size: 4
 per_device_eval_batch_size: 1
 gradient_accumulation_steps: 4
 warmup_ratio: 0.05
-max_steps: 4125
-learning_rate: 1e-5
+max_steps: 2100
+learning_rate: 2e-5
 optim: "adamw_8bit"
 weight_decay: 0.1
 lr_scheduler_type: "cosine"
 eval_strategy: "steps"
-eval_steps: 50
+eval_steps: 10
 save_strategy: "steps"
 save_steps: 100
-save_total_limit: 3
+save_total_limit: 5
 logging_steps: 10
 seed: 3407
 report_to: "wandb"
